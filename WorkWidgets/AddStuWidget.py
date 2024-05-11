@@ -34,9 +34,10 @@ class AddStuWidget(QtWidgets.QWidget):
         content_label_score = LabelComponent(16, "Score: ")
         self.editor_label_score = LineEditComponent()
         self.editor_label_score.mousePressEvent = self.editor_label_score.clear_editor_content
-        self.editor_label_score.disable()
         self.editor_label_score.setValidator(QtGui.QIntValidator(0, 100, self))
         self.editor_label_score.textChanged.connect(self.score_change)
+        self.editor_label_score.disable()
+
         self.button_add = ButtonComponent("Add")
         self.button_add.clicked.connect(self.add)
         self.button_add.disable()
@@ -48,6 +49,7 @@ class AddStuWidget(QtWidgets.QWidget):
         self.content_label_respon = LabelComponent(16, "", "color:red;")
         self.button_send = ButtonComponent("Send")
         self.button_send.clicked.connect(self.send)
+        self.button_send.disable()
 
         layout.addWidget(self.content_label_respon, 0, 4, 5, 1)
         layout.addWidget(self.button_send, 6, 4, 1, 1)
