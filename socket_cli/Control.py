@@ -15,17 +15,17 @@ class Control(QThread):
         self.score_dict = dict()
 
     def query(self,name):
-        respose=Query(self.client,{"name":name}).execute()
-        self.query_signal.emit(respose)
+        pesponse=Query(self.client,{"name":name}).execute()
+        self.query_signal.emit(pesponse)
 
     def add(self,subject,score):
         self.score_dict[subject]=score
-        respose={'status': "OK", 'reason': (f"add {subject} : {score}")}
-        self.add_signal.emit(respose)
+        pesponse={'status': "OK", 'reason': (f"add {subject} : {score}")}
+        self.add_signal.emit(pesponse)
 
     def send(self,name):
-        respose=AddStu(self.client,{'name': name, 'scores': self.score_dict}).execute()
+        pesponse=AddStu(self.client,{'name': name, 'scores': self.score_dict}).execute()
         self.score_dict={}
-        self.send_signal.emit(respose)
+        self.send_signal.emit(pesponse)
 
 
