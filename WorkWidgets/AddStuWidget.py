@@ -85,15 +85,14 @@ class AddStuWidget(QtWidgets.QWidget):
         self.control.query_signal.connect(self.after_query)
         self.control.query(self.editor_label_name.text())
 
-    def after_query(self,pesponse):
-        if pesponse["status"]=="Fail":
+    def after_query(self,response):
+        if response["status"]=="Fail":
             self.editor_label_name.disable()
             self.editor_label_subject.enable()
             self.editor_label_score.enable()
             self.button_send.disable()
-            self.name=self.editor_label_name.text()
         else:
-            self.content_label_respon.setText("The information: <br>"+pesponse["reason"])
+            self.content_label_respon.setText("The information: <br>"+response["reason"])
         
 
 
@@ -104,19 +103,19 @@ class AddStuWidget(QtWidgets.QWidget):
             self.control.add_signal.connect(self.after_add)
             self.control.add(self.editor_label_subject.text(),self.editor_label_score.text())
 
-    def after_add(self,pesponse):
-        if pesponse["status"]=="OK":
+    def after_add(self,response):
+        if response["status"]=="OK":
             self.button_send.enable()
-        self.content_label_respon.setText("The information: <br>"+pesponse["reason"])
+        self.content_label_respon.setText("The information: <br>"+response["reason"])
 
 
     def send(self):
         self.control.send_signal.connect(self.after_send)
-        self.control.send(self.name)
+        self.control.send()
             
     
-    def after_send(self,pesponse):
-        if pesponse["status"]=="OK":
+    def after_send(self,response):
+        if response["status"]=="OK":
             self.editor_label_name.enable()
             self.editor_label_name.setText("Name")
             self.editor_label_subject.setText("Subject")
@@ -126,4 +125,4 @@ class AddStuWidget(QtWidgets.QWidget):
             self.button_query.disable()
             self.button_add.disable()
             self.button_send.disable()
-        self.content_label_respon.setText("The information: <br>"+pesponse["reason"])
+        self.content_label_respon.setText("The information: <br>"+response["reason"])
