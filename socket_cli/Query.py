@@ -9,8 +9,8 @@ class Query:
         if response["status"] == 'Fail':
             reason="name not found"
             print(reason)
-            return {'status': "OK", 'reason': reason}
+            return {'status': "Fail", 'reason': reason}
         else:
             reason=f"name {self.quary_dict['name']} exist"
             print(reason)
-            return {'status': "Fail", 'reason': reason}
+            return {'status': "OK", 'reason': reason}

@@ -86,11 +86,12 @@ class AddStuWidget(QtWidgets.QWidget):
         self.control.query(self.editor_label_name.text())
 
     def after_query(self,respose):
-        if respose["status"]=="OK":
+        if respose["status"]=="Fail":
             self.editor_label_name.disable()
             self.editor_label_subject.enable()
             self.editor_label_score.enable()
             self.button_send.disable()
+            self.name=self.editor_label_name.text()
         else:
             self.content_label_respon.setText("The information: <br>"+respose["reason"])
         
@@ -105,14 +106,13 @@ class AddStuWidget(QtWidgets.QWidget):
 
     def after_add(self,respose):
         if respose["status"]=="OK":
-            print(respose["reason"])
             self.button_send.enable()
         self.content_label_respon.setText("The information: <br>"+respose["reason"])
 
 
     def send(self):
         self.control.send_signal.connect(self.after_send)
-        self.control.send(self.editor_label_name.text())
+        self.control.send(self.name)
             
     
     def after_send(self,respose):
