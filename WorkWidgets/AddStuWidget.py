@@ -68,12 +68,17 @@ class AddStuWidget(QtWidgets.QWidget):
 
     def name_inputed(self):
         self.button_query.setEnabled(bool(self.editor_label_name.text()))
+        self.editor_label_score.setText("")
+        self.editor_label_subject.setEnabled(False)
+        self.editor_label_score.setEnabled(False)
+        self.button_add.setEnabled(False)        
 
     def score_inputed(self):
         self.button_add.setEnabled(bool(self.editor_label_score.text()))
 
     def query(self):
         name = self.editor_label_name.text()
+        self.content_label_response.setText("The name has been changed.")
         self.ServiceControl.query_signal.connect(self.query_result)
         self.ServiceControl.query(name)
     
