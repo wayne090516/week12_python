@@ -3,7 +3,7 @@ import socket
 import json
 from FunctionsHandler import FunctionsHandler
 import sys
-sys.path.insert(0, '../sqlite_example')
+sys.path.insert(0, '../sqlite')
 from DBConnection import DBConnection
 from DBInitializer import DBInitializer
 

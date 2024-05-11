@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '../sqlite_example')
+sys.path.insert(0, '../sqlite')
 from StudentInfoTable import StudentInfoTable
 
 class FunctionsHandler:
